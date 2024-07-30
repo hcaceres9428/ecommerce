@@ -5,7 +5,7 @@ import com.hcprogramer.ecommerce.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.hcprogramer.ecommerce.repository.CategoryRepository.categoryRepository;
+
 
 @Service
 public class CategoryService {

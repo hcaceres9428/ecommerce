@@ -22,11 +22,11 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PatchMapping("/create")
-    public ResponseEntity<ApiResponse> createCategory(@Valid @RequestBody Category category){
-        if(Objects.nonNull(categoryService.readCategory(category.getCategoryName()))){
-            return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Category already exits").getMessage().HttpStatus.CONFLICT);
+    public ResponseEntity<ApiResponse> createCategory(@Valid @RequestBody Category category) {
+        if (Objects.nonNull(categoryService.readCategory(category.getCategoryName()))) {
+            return new ResponseEntity<>(new ApiResponse(false, "Category already exists"), HttpStatus.CONFLICT);
         }
         categoryService.createCategory(category);
-        return new ResponseEntity<>(new ApiResponse(true, "Created The category").HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse(true, "Created the category"), HttpStatus.CREATED);
     }
 }
