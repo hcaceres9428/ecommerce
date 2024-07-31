@@ -1,10 +1,10 @@
 package com.hcprogramer.ecommerce.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -12,22 +12,29 @@ public class Category {
     private Integer id;
 
     @Column(name = "category_name")
-    private @NotBlank String categoryName;
+    private String categoryName;
 
-    private @NotBlank String description;
+    @Column(nullable = false)
+    private String description;
 
-    private @NotBlank String imageUrl;
+    private String imageUrl;
 
-    public Category(@NotBlank String categoryName,@NotBlank String description){
+    // Constructor por defecto
+    public Category() {
+    }
+
+    public Category(String categoryName, String description) {
         this.categoryName = categoryName;
         this.description = description;
     }
-    public Category(@NotBlank String categoryName,@NotBlank String description,@NotBlank String imageUrl){
+
+    public Category(String categoryName, String description, String imageUrl) {
         this.categoryName = categoryName;
         this.description = description;
         this.imageUrl = imageUrl;
     }
 
+    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -36,28 +43,28 @@ public class Category {
         this.id = id;
     }
 
-    public @NotBlank String getCategoryName() {
+    public String getCategoryName() {
         return categoryName;
     }
 
-    public void setCategoryName(@NotBlank String categoryName) {
+    public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
 
-    public @NotBlank String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(@NotBlank String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public @NotBlank String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(@NotBlank String description) {
+    public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
