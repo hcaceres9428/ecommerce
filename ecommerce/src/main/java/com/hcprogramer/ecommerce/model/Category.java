@@ -1,7 +1,6 @@
 package com.hcprogramer.ecommerce.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "categories")
