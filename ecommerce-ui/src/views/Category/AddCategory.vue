@@ -1,0 +1,54 @@
+<template>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center"></div>
+            <h3>Add new Category</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-md-6 px-md-0"></div>
+        <form>
+            <div class="form-group">
+                <label>Category name</label>
+                <input type="text" class="form-control" v-model="categoryName" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" v-model="description" required>
+            </div>
+            <div class="form-group">
+                <label>ImageUrl</label>
+                <input type="url" class="form-control" v-model="imgeUrl" required>
+            </div>
+            <button type="button" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="col-3"></div>
+    </div>
+</template>
+
+<script>
+
+export default {
+  data(){
+    return{
+        categoryName : null,
+        description : null,
+        imgeUrl : null,
+    }
+  },
+  props:[],
+  methods:{
+
+  }
+  
+}
+</script>
+
+<style scoped>
+    h4{
+        font-family: 'Roboto', 'sans-serif';
+        color: #484848;
+        font-weight: 700;
+    }
+</style>
