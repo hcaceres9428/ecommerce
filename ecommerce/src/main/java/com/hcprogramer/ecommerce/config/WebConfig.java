@@ -1,5 +1,6 @@
 package com.hcprogramer.ecommerce.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -7,13 +8,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig {
 
-    public WebMvcConfigurer corsConfigurer(){
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/*")
+                registry.addMapping("/**")
                         .allowedOrigins("*")
-                        .allowedMethods("GET","POST","PUT","PATCH","DELETE","OPTIONS");
+                        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+                        .allowedHeaders("*") // Permite todos los encabezados
+                        .allowCredentials(false); // Las credenciales no se envían cuando se usa "*"
             }
         };
     }
