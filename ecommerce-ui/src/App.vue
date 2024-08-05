@@ -1,10 +1,54 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <div id="nav">
+      <NavbarComp />
+    </div>
+    <div style="min-height: 60vh">
+      <router-view v-if="products && categories"
+                   :baseURL="baseURL"
+                   :products="products"
+                   :categories="categories"
+                   @fetchData="fetchData">
+      </router-view>
+    </div>
+    <FooterComp />
+  </div>
 </template>
+
+<script>
+import FooterComp from './components/FooterComp.vue';
+import NavbarComp from './components/NavbarComp.vue';
+
+
+const axios = require('axios');
+export default{
+  data(){
+    return{
+      baseURL: "http://localhost:8080",
+      products: null,
+      categories: null
+    }
+  },
+  components: {NavbarComp, FooterComp},
+  methods: {
+    async fetchData(){
+      //get products
+      await axios.get(this.baseURL + "/product/")
+          .then(res => this.products = res.data)
+          .catch(err => console.log(err))
+
+      //get categories
+      await axios.get(this.baseURL + "/category/")
+          .then(res => this.categories = res.data)
+          .catch(err => console.log(err))
+    }
+  },
+  mounted() {
+    this.fetchData();
+  }
+}
+
+</script>
 
 <style>
 #app {
@@ -15,16 +59,16 @@
   color: #2c3e50;
 }
 
-nav {
+#nav {
   padding: 30px;
 }
 
-nav a {
+#nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-nav a.router-link-exact-active {
+#nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
